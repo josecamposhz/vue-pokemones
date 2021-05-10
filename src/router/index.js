@@ -16,11 +16,6 @@ const routes = [
     component: () => import(/* webpackChunkName: "pokemon" */ '../views/Pokemon.vue')
   },
   {
-    path: '/pokemon/:page',
-    name: 'Pokemon',
-    component: () => import(/* webpackChunkName: "pokemon" */ '../views/Pokemon.vue')
-  },
-  {
     path: '*',
     redirect: '/pokemon'
   }

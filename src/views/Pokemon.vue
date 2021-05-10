@@ -8,12 +8,12 @@
       <div class="col-12">
         <button
           class="btn btn-primary m-2"
-          :disabled="offset == 0"
-          @click="getPokemons(offset - 20)"
+          :disabled="page == 0"
+          @click="getPokemons(page - 1)"
         >
           Anterior
         </button>
-        <button class="btn btn-primary m-2" @click="getPokemons(offset + 20)">
+        <button class="btn btn-primary m-2" @click="getPokemons(page + 1)">
           Siguiente
         </button>
       </div>
@@ -34,7 +34,7 @@ export default {
   },
   data() {
     return {
-      offset: 0,
+      page: 0,
       loading: true,
       pokemones: [],
     };
@@ -43,10 +43,10 @@ export default {
     this.getPokemons(0);
   },
   methods: {
-    async getPokemons(offset) {
-      this.offset = offset;
+    async getPokemons(page) {
+      this.page = page;
       this.loading = true;
-      const { data } = await api.all(`?limit=20&offset=${this.offset}`);
+      const { data } = await api.all(this.page);
       this.pokemones = data.results;
       // for (let i = 0; i < this.pokemones.length; i++) {
       //   this.pokemones[i] = await this.getPokemon(this.pokemones[i].name);

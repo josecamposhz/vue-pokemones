@@ -7,8 +7,8 @@ class ApiPokemonService {
         })
     }
 
-    all(offset) {
-        return this.resource.get(`?limit=20&offset=${offset}`);
+    all(page) {
+        return this.resource.get(`?limit=20&offset=${page * 20}`);
     }
 
     findByName(name) {
